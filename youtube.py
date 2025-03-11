@@ -1,19 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-import json
-import time
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
+from selenium.webdriver.chrome.options import Options
 # Initialize the web driver
 # driver = webdriver.Firefox()
 
+options = Options()
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+options.add_argument('--headless')
 # URL to fetch
 # url = 'https://www.youtube.com/watch?v=5OPShZJkJR8'
 
 class FetchTranscript:
     def __init__(self,url) -> None:
         self.url = url
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=options)
 
     def get_text(self):
         self.driver.get(self.url)
@@ -46,3 +48,8 @@ class FetchTranscript:
             pass
 
         return text
+
+
+# temp = FetchTranscript(url= "https://www.youtube.com/watch?v=8UryASGBiR4&t=7s")
+# text = temp.get_text()
+# print(text)
