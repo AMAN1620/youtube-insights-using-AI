@@ -1,7 +1,5 @@
 from openai import OpenAI
 import streamlit as st
-from youtube_transcript_api import YouTubeTranscriptApi
-import re
 from youtube import FetchTranscript
 
 def get_transcript(url):
